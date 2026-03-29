@@ -1,37 +1,42 @@
 # Code Standards
 
-## General Principles
+These are non-negotiable quality rules that apply across all projects. They are always in effect regardless of which prompts, agents, or workflows are being used.
 
-- Write clear, self-documenting code; use comments only for "why", not "what"
-- Follow the single responsibility principle for functions and modules
-- Keep functions short and focused (aim for under 30 lines)
-- Prefer immutability and pure functions where practical
-- Handle errors explicitly; never silently swallow exceptions
+## General Quality Rules
 
-## Naming Conventions
+- Favor clarity over cleverness
+- Keep functions and components focused on a single responsibility
+- Prefer explicit, descriptive naming over abbreviations
+- Reduce duplication, but don't over-abstract (three similar lines is fine)
+- Avoid hidden side effects -- make data flow obvious
+- Keep business logic out of presentation layers when reasonable
+- Preserve existing patterns unless intentionally improving them
+- Use comments for "why," not "what" -- code should be self-documenting
 
-- Use descriptive, intention-revealing names
-- Variables: nouns that describe the value (`userCount`, `isActive`)
-- Functions: verbs that describe the action (`fetchUser`, `calculateTotal`)
-- Booleans: prefix with `is`, `has`, `should`, `can`
-- Constants: UPPER_SNAKE_CASE for true constants
+## Change Management Rules
 
-## Code Organization
+- Make atomic changes -- each commit should do one thing
+- Avoid unrelated edits in the same commit
+- Do not silently rename important concepts without updating all references
+- Keep diffs understandable and reviewable
+- Prefer safe incremental refactors over giant rewrites
+- Do not leave half-migrated patterns (some old, some new)
+- Do not introduce dead code without a clear reason
 
-- Group related code together; separate concerns into distinct modules
-- Keep imports organized and sorted
-- Avoid circular dependencies
-- Limit file length; split when a file exceeds ~300 lines
+## Reliability Rules
 
-## Error Handling
-
-- Validate inputs at system boundaries
-- Use typed errors/exceptions with meaningful messages
+- Verify assumptions in code before editing
+- Validate inputs at system boundaries (user input, external APIs)
+- Handle errors explicitly -- never silently swallow exceptions
 - Fail fast on programmer errors; recover gracefully from operational errors
 - Log errors with sufficient context for debugging
+- Add regression tests for critical bugs when feasible
+- Fix flaky tests immediately -- do not let them accumulate
 
-## Testing
+## Work Habits
 
-- Write tests alongside code, not as an afterthought
-- Test behavior and outcomes, not implementation details
-- Maintain fast, reliable test suites; fix flaky tests immediately
+- Create a todo list before starting large work
+- Work in manageable batches to avoid context loss and timeouts
+- Commit frequently with descriptive messages
+- Test after each meaningful batch of changes
+- Keep architecture aligned with deployment reality (e.g., don't rely on server memory in serverless)

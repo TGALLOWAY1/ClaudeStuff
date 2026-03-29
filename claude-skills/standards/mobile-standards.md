@@ -1,47 +1,45 @@
 # Mobile Standards
 
-## Platform Guidelines
+These are non-negotiable quality rules for mobile experiences. They define the minimum bar for any app that will be used on phone-sized screens.
 
-- Follow iOS Human Interface Guidelines for iOS apps
-- Follow Material Design 3 guidelines for Android apps
-- Use platform-native navigation patterns and UI components
-- Respect platform conventions for gestures, haptics, and notifications
+## Layout Rules
 
-## Performance
+- No horizontal overflow unless intentionally scrollable (e.g., carousels)
+- No content clipped at viewport edges
+- Safe handling of sticky headers and bottom bars -- they must not overlap content
+- Mobile-first stacking for dense layouts (side-by-side should stack on small screens)
+- Respect safe area insets on notched and rounded-corner devices
+- Modals must be fully usable on small screens -- no clipped buttons or hidden content
 
-- App should be interactive within 2 seconds of launch
-- Minimize main thread work; offload heavy computation to background threads
-- Optimize images: use appropriate formats (WebP), lazy load, and cache aggressively
-- Limit network requests; batch API calls where possible
-- Monitor and minimize memory usage; avoid retain cycles and memory leaks
+## Interaction Rules
 
-## Offline & Networking
+- Touch targets must be at least 44x44 points
+- No hidden actions obscured by the on-screen keyboard
+- Avoid nested scroll containers that fight each other
+- Primary actions should be reachable with thumb-friendly placement
+- Gestures should feel natural and not conflict with platform gestures
+- Ensure forms are usable when the keyboard is open (inputs not hidden)
 
-- Design for offline-first where applicable
-- Cache critical data locally for instant access
-- Show meaningful offline states rather than generic errors
-- Handle network transitions (WiFi to cellular) gracefully
-- Implement retry logic with exponential backoff for failed requests
+## Content Rules
 
-## Security
+- Reduce redundant copy on small screens -- every word must earn its space
+- Use compact card layouts when possible
+- Surface only high-value information above the fold
+- Don't make users scroll through noise to reach core actions
+- Avoid information density that requires horizontal scrolling to read
 
-- Store sensitive data in the platform keychain/keystore, not in plain storage
-- Implement certificate pinning for API communication
-- Use biometric authentication where appropriate
-- Encrypt data at rest for sensitive information
-- Obfuscate release builds; strip debug symbols
+## Performance / Feel Rules
 
-## Accessibility
+- Avoid heavy layout jitter (Cumulative Layout Shift)
+- Avoid laggy interactions -- prioritize responsiveness on the main thread
+- Keep animations simple and smooth; avoid unnecessary complexity
+- Prioritize smooth core actions over fancy visual effects
+- Images should be lazy-loaded and appropriately sized for mobile
 
-- Support Dynamic Type / font scaling on both platforms
-- Ensure all screens are navigable with VoiceOver (iOS) and TalkBack (Android)
-- Provide sufficient color contrast and avoid conveying meaning through color alone
-- Touch targets must be at least 44x44 points (iOS) / 48x48 dp (Android)
-- Test with accessibility tools on both platforms
+## Testing Expectations
 
-## Testing
-
-- Write unit tests for business logic and view models
-- Write UI tests for critical user flows
-- Test on a range of device sizes and OS versions
-- Profile for performance regressions before each release
+- Test on iPhone-width viewports (375px) as the primary mobile target
+- Test portrait mode as the default orientation
+- Verify modals, drawers, and overlays on small screens
+- Check keyboard interactions with all form inputs
+- Verify tap targets are accessible and not overlapping
