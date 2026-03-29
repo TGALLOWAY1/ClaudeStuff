@@ -15,10 +15,11 @@ This repo does four things:
 
 ```
 claude-skills/
-  prompts/          # Specialized analysis instructions (task-specific)
-  agents/           # Reusable role definitions (behavioral)
-  workflows/        # Step-by-step execution patterns (procedural)
-  standards/        # Non-negotiable quality rules (always in effect)
+  prompts/              # Specialized analysis instructions (task-specific)
+  agents/               # Reusable role definitions (behavioral)
+    creative/           # Creative lab: multidisciplinary creative agents
+  workflows/            # Step-by-step execution patterns (procedural)
+  standards/            # Non-negotiable quality rules (always in effect)
 ```
 
 ### How the layers work together
@@ -43,13 +44,41 @@ claude-skills/
 | `prompts/ui-audit.md` | Product coherence: visual hierarchy, consistency, UX flow, clarity |
 | `prompts/deployment-audit.md` | Deployment readiness: build, env vars, secrets, hosting compatibility |
 
-### Agents
+### Agents (Engineering)
 
 | File | Purpose |
 |------|---------|
 | `agents/bug-fixer.md` | Root-cause debugging and minimal reliable fixes |
 | `agents/test-writer.md` | Practical, prioritized test coverage around risky logic |
 | `agents/refactor-agent.md` | Safe structural improvements without behavior changes |
+
+### Agents (Creative Lab)
+
+The creative lab is a team of specialized agents that work together as a multidisciplinary creative studio. They're designed for projects at the intersection of music, math, visuals, animation, and interactive tools.
+
+| File | Role | Purpose |
+|------|------|---------|
+| `agents/creative/creative-orchestrator.md` | Director | Takes vague ideas and turns them into structured multidisciplinary concepts |
+| `agents/creative/cross-domain-translator.md` | Translator | Maps one creative medium into another (music to visuals, math to motion) |
+| `agents/creative/music-systems-agent.md` | Specialist | Music as a system: composition, sound design, performance, musical UX |
+| `agents/creative/visual-art-direction-agent.md` | Specialist | Visual identity, composition, mood, aesthetic coherence |
+| `agents/creative/math-structures-agent.md` | Specialist | Mathematical beauty into intuitions, visuals, dynamics, and interactions |
+| `agents/creative/animation-motion-agent.md` | Specialist | Motion as meaning: rhythm, transformation, pacing, synchronization |
+| `agents/creative/creative-tool-builder-agent.md` | Productizer | Turns creative concepts into usable software with clear scope |
+
+**How the creative lab works:**
+
+```
+Stage 1 -- Orchestrator frames the idea
+    |
+Stage 2 -- Specialists deepen their domains
+    |       (music, math, visuals, motion, tools)
+    |       Cross-domain translator bridges between them
+    |
+Stage 3 -- Orchestrator reunifies into concept + scope + plan
+```
+
+The orchestrator coordinates. The specialists provide depth. The translator finds the connections between disciplines. The tool builder turns concepts into buildable products.
 
 ### Workflows
 
@@ -69,9 +98,9 @@ claude-skills/
 
 ## Usage Examples
 
-### Example 1: Fix a pinning bug
+### Engineering Examples
 
-Combine the bug-fixing agent with the fix-bug workflow, enforcing code and UI standards:
+#### Example 1: Fix a pinning bug
 
 ```
 Use the following skill files for this task:
@@ -83,9 +112,7 @@ Use the following skill files for this task:
 The "pin" button on routines doesn't persist after page refresh...
 ```
 
-### Example 2: Audit the app on iPhone
-
-Combine mobile and UI audits with their corresponding standards:
+#### Example 2: Audit the app on iPhone
 
 ```
 Use the following skill files for this task:
@@ -97,9 +124,7 @@ Use the following skill files for this task:
 Perform a full mobile and UI audit of this project...
 ```
 
-### Example 3: Prepare for Vercel deployment
-
-Combine the deployment audit with the release workflow:
+#### Example 3: Prepare for Vercel deployment
 
 ```
 Use the following skill files for this task:
@@ -110,9 +135,7 @@ Use the following skill files for this task:
 Evaluate whether this project is ready to deploy on Vercel...
 ```
 
-### Example 4: Clean up a messy feature area
-
-Combine the refactor agent with a codebase audit to identify and fix structural issues:
+#### Example 4: Clean up a messy feature area
 
 ```
 Use the following skill files for this task:
@@ -123,9 +146,7 @@ Use the following skill files for this task:
 The dashboard component has grown too large. Audit and refactor...
 ```
 
-### Example 5: Add tests after a bug fix
-
-Use the test writer agent to add regression coverage:
+#### Example 5: Add tests after a bug fix
 
 ```
 Use the following skill files for this task:
@@ -135,9 +156,7 @@ Use the following skill files for this task:
 Add regression tests around the pinning logic that was just fixed...
 ```
 
-### Example 6: Build a new analytics tab
-
-Use the feature workflow with code and UI standards:
+#### Example 6: Build a new analytics tab
 
 ```
 Use the following skill files for this task:
@@ -149,9 +168,88 @@ Use the following skill files for this task:
 Add a new "Weekly Summary" tab to the analytics page...
 ```
 
-## File Design Convention
+### Creative Lab Examples
 
-Each markdown file follows a consistent structure:
+#### Example 7: Turn an abstract idea into a project concept
+
+```
+Use the following skill files for this task:
+- agents/creative/creative-orchestrator.md
+
+I want to build something that blends harmonic motion with differential
+geometry into a visual interactive piece...
+```
+
+#### Example 8: Design a music + math interactive project
+
+Full creative pipeline with orchestrator coordinating specialists:
+
+```
+Use the following skill files for this task:
+- agents/creative/creative-orchestrator.md
+- agents/creative/math-structures-agent.md
+- agents/creative/music-systems-agent.md
+- agents/creative/animation-motion-agent.md
+- agents/creative/visual-art-direction-agent.md
+- agents/creative/creative-tool-builder-agent.md
+
+I want to build a visual interactive project based on harmonic motion
+and differential geometry. The math should drive the visuals, music
+should influence the geometry, and the whole thing should be explorable...
+```
+
+#### Example 9: Translate music into animation
+
+```
+Use the following skill files for this task:
+- agents/creative/cross-domain-translator.md
+- agents/creative/music-systems-agent.md
+- agents/creative/animation-motion-agent.md
+
+Map a chord progression with rising tension into a particle animation
+system. The visual should feel like the music sounds...
+```
+
+#### Example 10: Design a music-learning tool
+
+```
+Use the following skill files for this task:
+- agents/creative/creative-tool-builder-agent.md
+- agents/creative/music-systems-agent.md
+- standards/ui-ux-standards.md
+- standards/mobile-standards.md
+
+Design a practice mode for learning chord progressions by ear.
+It should work on mobile and feel musical, not academic...
+```
+
+#### Example 11: Art direct a portfolio piece
+
+```
+Use the following skill files for this task:
+- agents/creative/visual-art-direction-agent.md
+- agents/creative/creative-orchestrator.md
+
+I have a working generative math visualization but it looks generic.
+Help me develop a distinctive visual identity that would be
+memorable in a portfolio...
+```
+
+#### Example 12: Build a creative tool from a math concept
+
+```
+Use the following skill files for this task:
+- agents/creative/math-structures-agent.md
+- agents/creative/creative-tool-builder-agent.md
+- agents/creative/visual-art-direction-agent.md
+
+Turn Fourier transforms into an interactive toy where people can
+draw shapes and see them decompose into frequencies...
+```
+
+## File Design Conventions
+
+### Engineering agents, prompts, workflows, and standards
 
 ```markdown
 # Title
@@ -165,7 +263,23 @@ Each markdown file follows a consistent structure:
 ## Common Mistakes To Avoid
 ```
 
-This makes every file easy to understand, reuse, and update.
+### Creative agents
+
+```markdown
+# Agent Name
+
+## Purpose
+## Best Use Cases
+## Core Perspective
+## Priorities
+## Inputs It Expects
+## Required Process
+## Output Format
+## Anti-Patterns To Avoid
+## Relationship To Other Agents
+```
+
+The creative agents include a "Relationship To Other Agents" section because they're designed to work as a coordinated team, not in isolation.
 
 ## Future Expansion
 
@@ -173,9 +287,15 @@ The structure is designed to grow. Potential additions:
 
 ```
 claude-skills/
-  templates/        # Reusable output formats: PRDs, bug reports, audit report skeletons
-  examples/         # Strongest real prompts from past sessions
-  project-types/    # Special instructions for React apps, Vercel apps, audio tools, etc.
+  templates/            # Reusable output formats: PRDs, bug reports, audit report skeletons
+  examples/             # Strongest real prompts from past sessions
+  project-types/        # Special instructions for React apps, Vercel apps, audio tools, etc.
+  agents/creative/
+    sound-design-agent.md
+    generative-art-agent.md
+    curriculum-designer-agent.md
+    portfolio-story-agent.md
+    scientific-visualization-agent.md
 ```
 
 ---
@@ -218,7 +338,7 @@ Use this checklist to verify each file meets quality standards before considerin
   - [ ] Output format separates required fixes from nice-to-haves
   - [ ] Addresses common hosting platforms (Vercel, Render, Railway)
 
-### Agents
+### Engineering Agents
 
 - [ ] **bug-fixer.md**
   - [ ] Purpose defines the agent's role clearly
@@ -243,6 +363,64 @@ Use this checklist to verify each file meets quality standards before considerin
   - [ ] Enforces incremental batches with frequent commits
   - [ ] Output format confirms behavior was preserved
   - [ ] Rules prevent combining behavior changes with structural changes
+
+### Creative Lab Agents
+
+- [ ] **creative-orchestrator.md**
+  - [ ] Purpose clearly defines the orchestrator as the central coordinator
+  - [ ] Core perspective covers creative director, systems designer, project scoper, translator
+  - [ ] Process moves from framing to discipline mapping to synthesis
+  - [ ] Output format includes concept, emotional goal, disciplines, scope options, next steps
+  - [ ] Explains when and how to route to specialist agents
+  - [ ] Anti-patterns prevent feature-list thinking over concept thinking
+
+- [ ] **cross-domain-translator.md**
+  - [ ] Purpose clearly defines structural translation between creative domains
+  - [ ] Core perspective emphasizes structural correspondence over arbitrary mapping
+  - [ ] Process includes identifying source structure, finding correspondences, defining rules
+  - [ ] Output format includes mapping table, translation rules, and aesthetic quality check
+  - [ ] Acknowledges where metaphors break down
+  - [ ] Anti-patterns prevent arbitrary color-to-note style mappings
+
+- [ ] **music-systems-agent.md**
+  - [ ] Purpose defines music-as-system thinking (not just music theory)
+  - [ ] Core perspective balances musicality with systems thinking
+  - [ ] Priorities list musicality, tension/release, phrase shape, groove, performability
+  - [ ] Covers harmony, melody, rhythm, timbre, dynamics, structure, and performance
+  - [ ] Anti-patterns prevent over-theoretical but emotionally flat outputs
+  - [ ] Addresses hand/finger ergonomics for performance interfaces
+
+- [ ] **visual-art-direction-agent.md**
+  - [ ] Purpose defines taste and composition, not just visual design
+  - [ ] Distinguishes between functional UI, portfolio UI, brand visuals, and generative systems
+  - [ ] Covers mood, composition, color logic, typography, texture, and visual metaphor
+  - [ ] Priorities emphasize hierarchy, coherence, restraint, emotion, and distinction
+  - [ ] Anti-patterns prevent generic aesthetics and decoration without hierarchy
+  - [ ] Assessment adjusts based on context (product vs. portfolio vs. art)
+
+- [ ] **math-structures-agent.md**
+  - [ ] Purpose defines math as beauty/structure/dynamics, not academic subject
+  - [ ] Core perspective moves from symbolic form toward intuition, visuals, dynamics
+  - [ ] Process covers mathematical core, intuition, visual metaphor, dynamic behavior, parameters
+  - [ ] Output format includes beauty/surprise and interaction opportunities
+  - [ ] Priorities emphasize intuition over formalism and visual thinking
+  - [ ] Anti-patterns prevent purely symbolic explanations and visually arbitrary animations
+
+- [ ] **animation-motion-agent.md**
+  - [ ] Purpose defines motion as meaning, not just movement
+  - [ ] Core perspective covers rhythm, energy, momentum, emergence, legibility
+  - [ ] Process includes choreography with phases, hero moments, and synchronization
+  - [ ] Priorities emphasize purpose, rhythm, continuity, and restraint
+  - [ ] Addresses music-synced motion and math-driven animation specifically
+  - [ ] Anti-patterns prevent purposeless motion and visual fatigue
+
+- [ ] **creative-tool-builder-agent.md**
+  - [ ] Purpose defines productizing creative concepts into usable software
+  - [ ] Core perspective addresses the depth-vs-usability tension directly
+  - [ ] Process includes core experience, interaction model, feature architecture, V1 scoping
+  - [ ] Progressive complexity is defined (immediate, discovery, mastery)
+  - [ ] Output format includes magic moment and scope decisions (must/should/cut)
+  - [ ] Anti-patterns prevent feature bloat and power-user-only interfaces
 
 ### Workflows
 
@@ -295,10 +473,14 @@ Use this checklist to verify each file meets quality standards before considerin
 
 ### Overall Structure
 
-- [ ] All files follow the consistent structure: Purpose, When To Use, Inputs, Process, Output, Rules, Mistakes
+- [ ] All engineering files follow: Purpose, When To Use, Inputs, Process, Output, Rules, Mistakes
+- [ ] All creative files follow: Purpose, Best Use Cases, Core Perspective, Priorities, Inputs, Process, Output, Anti-Patterns, Relationships
 - [ ] No overlap or duplication between files (each has a clear, distinct job)
 - [ ] Standards are short and stable; prompts are rich and specific
-- [ ] Agents are behavioral; workflows are procedural
+- [ ] Engineering agents are behavioral; workflows are procedural
+- [ ] Creative agents define taste and constraints, not just generic helpfulness
+- [ ] Creative agents have explicit cross-references to each other
+- [ ] The orchestrator clearly coordinates the creative pipeline
 - [ ] Files are composable -- they can be combined without conflicting
 - [ ] README accurately describes all files and their purposes
-- [ ] Usage examples cover common real-world scenarios
+- [ ] Usage examples cover both engineering and creative scenarios
