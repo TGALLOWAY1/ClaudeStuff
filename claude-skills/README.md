@@ -2,6 +2,56 @@
 
 A portable operating system for Claude Code. This repo contains reusable prompts, agent definitions, workflows, and standards that make Claude Code sessions more consistent, efficient, and high-quality.
 
+## Using This Repo As A Submodule
+
+This repo is designed to be shared across all your projects. Add it as a Git submodule so every project has access to the same skills, agents, and standards.
+
+### Add to an existing project
+
+```bash
+cd your-project
+git submodule add https://github.com/tgalloway1/claudestuff.git claude-skills
+git commit -m "Add claude-skills submodule"
+```
+
+### Clone a project that already has the submodule
+
+```bash
+git clone --recurse-submodules https://github.com/you/your-project.git
+
+# Or if you already cloned without --recurse-submodules:
+git submodule update --init --recursive
+```
+
+### Update the submodule to the latest version
+
+```bash
+cd claude-skills
+git pull origin main
+cd ..
+git add claude-skills
+git commit -m "Update claude-skills submodule to latest"
+```
+
+### Reference files in prompts
+
+Once the submodule is in your project, reference skill files relative to the submodule path:
+
+```
+Use the following skill files for this task:
+- claude-skills/agents/bug-fixer.md
+- claude-skills/workflows/fix-bug.md
+- claude-skills/standards/code-standards.md
+```
+
+### Tips
+
+- The submodule is a pointer to a specific commit. Run `git submodule update --remote` to pull the latest changes.
+- If you customize skills for a specific project, consider forking this repo or creating project-specific overrides in a local `claude-skills-local/` directory that is not a submodule.
+- Add `claude-skills` to your `.claude/settings.json` or `CLAUDE.md` file to make Claude Code aware of the skill files automatically.
+
+---
+
 ## Philosophy
 
 This repo does four things:
