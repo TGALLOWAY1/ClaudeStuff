@@ -20,18 +20,20 @@ claude-skills/
     creative/           # Creative lab: multidisciplinary creative agents
   workflows/            # Step-by-step execution patterns (procedural)
   standards/            # Non-negotiable quality rules (always in effect)
+  skills/               # Standalone utilities for recurring non-code tasks
 ```
 
 ### How the layers work together
 
-| Layer        | What it defines                | Characteristics                    |
-|--------------|-------------------------------|------------------------------------|
+| Layer         | What it defines                | Characteristics                    |
+|---------------|-------------------------------|------------------------------------|
 | **Standards** | Global quality rules          | Short, stable, always enforced     |
 | **Prompts**   | Task-specific analysis        | Rich, specific, deep inspection    |
 | **Agents**    | Role-based behavior           | Behavioral, disciplined, focused   |
 | **Workflows** | Execution sequences           | Procedural, ordered, repeatable    |
+| **Skills**    | Standalone utility processes  | Focused, repeatable, output-driven |
 
-**Standards** are always in effect. **Prompts** tell Claude how to think for a given task. **Agents** tell Claude how to behave in a given role. **Workflows** tell Claude what sequence of steps to follow.
+**Standards** are always in effect. **Prompts** tell Claude how to think for a given task. **Agents** tell Claude how to behave in a given role. **Workflows** tell Claude what sequence of steps to follow. **Skills** are standalone processes for recurring non-code tasks like framing portfolio pieces, resetting project context, or enforcing naming consistency.
 
 ## Files
 
@@ -95,6 +97,18 @@ The orchestrator coordinates. The specialists provide depth. The translator find
 | `standards/code-standards.md` | Code quality, change management, reliability, work habits |
 | `standards/ui-ux-standards.md` | UX principles, visual consistency, interaction rules |
 | `standards/mobile-standards.md` | Mobile layout, interaction, content, and performance rules |
+
+### Skills
+
+Skills are standalone utility processes for recurring non-code tasks. Unlike agents (which define behavior) or workflows (which define execution sequences), skills are focused tools that produce a specific type of output.
+
+| File | Purpose |
+|------|---------|
+| `skills/portfolio-framing.md` | Transform projects into recruiter-friendly portfolio pieces, resume bullets, and demo scripts |
+| `skills/weekly-project-reset.md` | Re-enter a project quickly with a clear snapshot of state, priorities, and next steps |
+| `skills/canonical-vocabulary-enforcer.md` | Establish and enforce consistent naming across code, UI, database, and docs |
+| `skills/prompt-pack-generator.md` | Generate optimized prompts for the same task across multiple AI agents |
+| `skills/decision-log.md` | Record architectural and technical decisions with context, reasoning, and tradeoffs |
 
 ## Usage Examples
 
@@ -247,6 +261,62 @@ Turn Fourier transforms into an interactive toy where people can
 draw shapes and see them decompose into frequencies...
 ```
 
+### Skill Examples
+
+#### Example 13: Frame a project for your portfolio
+
+```
+Use the following skill files for this task:
+- skills/portfolio-framing.md
+
+I just finished my MCTS game engine project. Help me frame it
+for my portfolio, resume, and recruiter conversations...
+```
+
+#### Example 14: Re-enter a project after time away
+
+```
+Use the following skill files for this task:
+- skills/weekly-project-reset.md
+
+I haven't worked on this project in two weeks. Give me a reset:
+where things stand, what's broken, and what I should work on next...
+```
+
+#### Example 15: Fix naming chaos across a project
+
+```
+Use the following skill files for this task:
+- skills/canonical-vocabulary-enforcer.md
+- agents/refactor-agent.md
+
+The same concept is called "Task", "Todo", and "Item" in different
+parts of the codebase. Audit the naming and create a canonical
+vocabulary, then refactor to enforce it...
+```
+
+#### Example 16: Generate prompts for multiple AI tools
+
+```
+Use the following skill files for this task:
+- skills/prompt-pack-generator.md
+
+I need to refactor the dashboard component. Generate optimized
+prompts for Claude Code, Cursor, and GPT so I can compare
+how each handles it...
+```
+
+#### Example 17: Log a technical decision
+
+```
+Use the following skill files for this task:
+- skills/decision-log.md
+
+We just decided to use Simulated Annealing instead of Genetic
+Algorithms for layout optimization. Document this decision with
+full context, reasoning, and tradeoffs...
+```
+
 ## File Design Conventions
 
 ### Engineering agents, prompts, workflows, and standards
@@ -281,6 +351,23 @@ draw shapes and see them decompose into frequencies...
 
 The creative agents include a "Relationship To Other Agents" section because they're designed to work as a coordinated team, not in isolation.
 
+### Skills
+
+```markdown
+# Skill Name
+
+## Purpose
+## When To Use
+## Inputs Expected
+## Required Process
+## Output Format
+## Rules / Constraints
+## Common Mistakes To Avoid
+## Relationship To Other Skills
+```
+
+Skills follow the same structure as engineering files but add a "Relationship To Other Skills" section to show how they connect to existing prompts, agents, and workflows.
+
 ## Future Expansion
 
 The structure is designed to grow. Potential additions:
@@ -296,6 +383,11 @@ claude-skills/
     curriculum-designer-agent.md
     portfolio-story-agent.md
     scientific-visualization-agent.md
+  skills/
+    code-review-checklist.md
+    prd-generator.md
+    retrospective.md
+    dependency-audit.md
 ```
 
 ---
@@ -471,16 +563,60 @@ Use this checklist to verify each file meets quality standards before considerin
   - [ ] Addresses keyboard, scroll, and modal behavior on small screens
   - [ ] Includes testing expectations with specific viewport targets
 
+### Skills
+
+- [ ] **portfolio-framing.md**
+  - [ ] Purpose clearly defines transforming projects into portfolio pieces
+  - [ ] Framing angles cover performance, algorithms, architecture, tradeoffs, creative+technical blend
+  - [ ] Output format includes one-liner, story, technical highlights, resume bullets, recruiter explanation
+  - [ ] Key rule enforced: explain why it was hard, interesting, and matters -- not just features
+  - [ ] Demo script section addresses what to show and what to say
+  - [ ] Relationship to other skills documented (orchestrator, visual art direction, release workflow)
+
+- [ ] **weekly-project-reset.md**
+  - [ ] Purpose clearly defines quick re-entry after time away
+  - [ ] Process covers project summary, current state, architecture, next tasks, backlog, risks
+  - [ ] Next tasks limited to exactly 3 (forces prioritization)
+  - [ ] Backlog section exists to acknowledge deferred ideas without acting on them
+  - [ ] Definition of progress is specific and outcome-based, not effort-based
+  - [ ] Output is lightweight snapshot, not comprehensive project plan
+
+- [ ] **canonical-vocabulary-enforcer.md**
+  - [ ] Purpose clearly defines single canonical names across code, UI, database, and docs
+  - [ ] Process covers entity identification, conflict detection, canonical naming, and refactor targets
+  - [ ] Output includes canonical entities table with definitions and replacement terms
+  - [ ] Naming rules are explicit ("Use X instead of Y")
+  - [ ] Addresses the code-vs-UI naming exception (when user-facing names differ deliberately)
+  - [ ] Relationship to refactor agent documented for executing renames
+
+- [ ] **prompt-pack-generator.md**
+  - [ ] Purpose clearly defines generating agent-specific prompts for the same task
+  - [ ] Covers all 5 target agents (Claude Code, Codex/GPT, Gemini, Cursor, General LLM)
+  - [ ] Each prompt includes: objective, context, files, instructions, constraints, testing, deliverables
+  - [ ] Agent-specific adaptations are documented (different styles for different tools)
+  - [ ] Key rule enforced: prompts must be implementation-ready, not vague
+  - [ ] Each generated prompt is self-contained
+
+- [ ] **decision-log.md**
+  - [ ] Purpose clearly defines recording decisions with reasoning
+  - [ ] Format includes: decision, date, context, options, reasoning, tradeoffs, revisit conditions
+  - [ ] Includes a concrete example (Simulated Annealing)
+  - [ ] Emphasizes context as the most important section
+  - [ ] Requires documenting rejected options and why
+  - [ ] Defines revisit conditions to prevent both premature re-evaluation and permanent commitment
+
 ### Overall Structure
 
 - [ ] All engineering files follow: Purpose, When To Use, Inputs, Process, Output, Rules, Mistakes
 - [ ] All creative files follow: Purpose, Best Use Cases, Core Perspective, Priorities, Inputs, Process, Output, Anti-Patterns, Relationships
+- [ ] All skill files follow: Purpose, When To Use, Inputs, Process, Output, Rules, Mistakes, Relationships
 - [ ] No overlap or duplication between files (each has a clear, distinct job)
 - [ ] Standards are short and stable; prompts are rich and specific
 - [ ] Engineering agents are behavioral; workflows are procedural
 - [ ] Creative agents define taste and constraints, not just generic helpfulness
 - [ ] Creative agents have explicit cross-references to each other
 - [ ] The orchestrator clearly coordinates the creative pipeline
+- [ ] Skills are standalone utilities with clear output formats and cross-references
 - [ ] Files are composable -- they can be combined without conflicting
 - [ ] README accurately describes all files and their purposes
-- [ ] Usage examples cover both engineering and creative scenarios
+- [ ] Usage examples cover engineering, creative, and skill scenarios
